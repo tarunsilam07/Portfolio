@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
@@ -14,44 +14,41 @@ export default function Header() {
   const btnRef = useRef(null);
   const bgRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
-  console.log(isClient)
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
 
-  useLayoutEffect(() => {
-    if (typeof window === "undefined") return; // Ensure it's client-side
+    if (typeof window !== "undefined") {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          textRef.current,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }
+        );
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }
-      );
+        gsap.fromTo(
+          btnRef.current,
+          { opacity: 0, scale: 0.5 },
+          { opacity: 1, scale: 1, duration: 1, delay: 1 }
+        );
 
-      gsap.fromTo(
-        btnRef.current,
-        { opacity: 0, scale: 0.5 },
-        { opacity: 1, scale: 1, duration: 1, delay: 1 }
-      );
-
-      gsap.to(bgRef.current, {
-        backgroundPosition: "50% 100%",
-        scrollTrigger: {
-          trigger: bgRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 2,
-        },
+        gsap.to(bgRef.current, {
+          backgroundPosition: "50% 100%",
+          scrollTrigger: {
+            trigger: bgRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 2,
+          },
+        });
       });
-    });
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    }
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    if (typeof window !== "undefined") {
+    if (isClient) {
       const element = document.getElementById(sectionId);
       element?.scrollIntoView({ behavior: "smooth" });
     }
