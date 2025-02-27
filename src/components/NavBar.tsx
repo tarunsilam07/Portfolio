@@ -14,6 +14,7 @@ export default function Header() {
   const btnRef = useRef(null);
   const bgRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
+  console.log(isClient)
 
   useEffect(() => {
     setIsClient(true);
