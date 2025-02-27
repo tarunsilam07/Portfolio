@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
@@ -13,33 +13,38 @@ export default function Header() {
   const textRef = useRef(null);
   const btnRef = useRef(null);
   const bgRef = useRef(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    gsap.fromTo(
-      textRef.current,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }
-    );
+    setIsClient(true); // Ensure it's running only on the client
 
-    gsap.fromTo(
-      btnRef.current,
-      { opacity: 0, scale: 0.5 },
-      { opacity: 1, scale: 1, duration: 1, delay: 1 }
-    );
+    if (typeof window !== "undefined") {
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }
+      );
 
-    gsap.to(bgRef.current, {
-      backgroundPosition: "50% 100%",
-      scrollTrigger: {
-        trigger: bgRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 2,
-      },
-    });
+      gsap.fromTo(
+        btnRef.current,
+        { opacity: 0, scale: 0.5 },
+        { opacity: 1, scale: 1, duration: 1, delay: 1 }
+      );
+
+      gsap.to(bgRef.current, {
+        backgroundPosition: "50% 100%",
+        scrollTrigger: {
+          trigger: bgRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 2,
+        },
+      });
+    }
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    if (typeof window !== "undefined") {
+    if (isClient) {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
