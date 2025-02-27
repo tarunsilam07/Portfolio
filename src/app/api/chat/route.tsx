@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPEN_API, 
+  apiKey: process.env.OPEN_API, // Use environment variable for security
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-// Full resume data formatted for AI
 const resumeData = `
   Name: Tarun Silam
   Title: Full-Stack Developer | IoT & AI Enthusiast
@@ -56,11 +55,11 @@ const resumeData = `
   - If asked something unrelated, respond with: "I can only answer questions about Tarun's background."
 `;
 
-export async function POST(req: NextRequest) {
+export async function POST(req:NextRequest) {
   try {
     const { prompt } = await req.json();
     const aiResponse = await openai.chat.completions.create({
-      model: "openai/chatgpt-4o-latest",
+      model: "meta-llama/llama-3.3-70b-instruct:free", // Free model from OpenRouter
       messages: [
         { role: "system", content: `You are an AI assistant that only answers questions about Tarun Silam. Below is his resume:\n${resumeData}` },
         { role: "user", content: prompt }

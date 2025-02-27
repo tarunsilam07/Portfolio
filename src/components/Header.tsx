@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useMemo, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
@@ -17,8 +17,12 @@ export default function Header() {
 
   useEffect(() => {
     setIsClient(true); // Ensure it's running only on the client
+  }, []);
 
-    if (typeof window !== "undefined") {
+  useLayoutEffect(() => {
+    if (!isClient) return;
+
+    const ctx = gsap.context(() => {
       gsap.fromTo(
         textRef.current,
         { opacity: 0, y: 50 },
@@ -40,15 +44,15 @@ export default function Header() {
           scrub: 2,
         },
       });
-    }
-  }, []);
+    });
+
+    return () => ctx.revert();
+  }, [isClient]);
 
   const scrollToSection = (sectionId: string) => {
     if (isClient) {
       const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      element?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -72,7 +76,10 @@ export default function Header() {
         <motion.h2
           ref={textRef}
           className="text-4xl md:text-5xl font-bold mb-4 metallic-text"
-          animate={{ y: [0, -5, 0], transition: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
+          animate={{
+            y: [0, -5, 0],
+            transition: { repeat: Infinity, duration: 4, ease: "easeInOut" },
+          }}
         >
           Hello, I&apos;m Tarun!
         </motion.h2>
@@ -101,9 +108,9 @@ export default function Header() {
         <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6">
           <motion.a
             ref={btnRef}
-            href="/"
-            download="Tarun_Silam_Resume.pdf"
-            className="inline-flex items-center px-4 py-2 md:px-6 md:py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
+            href="/Tarun_Silam_Resume.pdf"
+            download
+            className="inline-flex items-center px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300"
             whileHover={{ scale: 1.1, rotate: 3 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -112,7 +119,7 @@ export default function Header() {
 
           <motion.button
             onClick={() => scrollToSection("contact")}
-            className="inline-flex items-center px-4 py-2 md:px-6 md:py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
+            className="inline-flex items-center px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300"
             whileHover={{ scale: 1.1, rotate: -3 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
