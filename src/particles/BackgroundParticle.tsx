@@ -1,14 +1,15 @@
 "use client";
 import React from "react";
 import { Particles } from "react-tsparticles";
+import { Engine, Container } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 const BackgroundParticles: React.FC = () => {
-  const particlesInit = async (main: any) => {
+  const particlesInit = async (main: Engine) => {
     await loadFull(main);
   };
 
-  const particlesLoaded = async (container: any): Promise<void> => {
+  const particlesLoaded = async (container?: Container): Promise<void> => {
     console.log("Particles Loaded:", container);
   };
 
@@ -39,11 +40,11 @@ const BackgroundParticles: React.FC = () => {
           },
           modes: {
             push: {
-              quantity: 2, // Reduce the number of particles added on click
+              quantity: 2,
             },
             repulse: {
-              distance: 100, // Reduce the repulse distance
-              duration: 0.2, // Shorten the repulse duration
+              distance: 100,
+              duration: 0.2,
             },
           },
         },
@@ -68,7 +69,7 @@ const BackgroundParticles: React.FC = () => {
               default: "bounce",
             },
             random: false,
-            speed: 2, // Constant speed
+            speed: 2,
             straight: false,
           },
           number: {
@@ -81,7 +82,7 @@ const BackgroundParticles: React.FC = () => {
           opacity: {
             value: 0.5,
             animation: {
-              enable: false, // Disable opacity animation
+              enable: false,
               speed: 1,
               minimumValue: 0.1,
               sync: false,
@@ -93,7 +94,7 @@ const BackgroundParticles: React.FC = () => {
           size: {
             value: { min: 1, max: 5 },
             animation: {
-              enable: false, // Disable size animation
+              enable: false,
               speed: 0,
               minimumValue: 0.1,
               sync: false,

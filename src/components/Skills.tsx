@@ -34,7 +34,6 @@ import apiIcon from "../../public/api.json" assert { type: "json" };
 import postmanIcon from "../../public/postman.json" assert { type: "json" };
 import dataAnalysisIcon from "../../public/dataanalysis.json" assert { type: "json" };
 import vscodeIcon from "../../public/vscode.png";
-import adobeIcon from "../../public/adobe.jpg"
 import jupyterIcon from "../../public/jupyter.jpg"
 import vercelIcon from "../../public/vercel.png"
 import railwayIcon from "../../public/railway.png"
@@ -126,7 +125,6 @@ const skillsData: SkillCategory[] = [
       { name: "Git", icon: gitIcon, isLottie: true },
       { name: "Postman", icon: postmanIcon, isLottie: true },
       { name: "VS Code", icon: vscodeIcon, isLottie: false },
-      // { name: "Adobe", icon: adobeIcon, isLottie: false },
     ],
   },
 ];

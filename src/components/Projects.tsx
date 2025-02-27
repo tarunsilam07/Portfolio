@@ -112,12 +112,12 @@ const ProjectsPage: React.FC = () => {
         <div className="md:w-1/2 mt-6 md:mt-0 md:ml-8 text-justify md:text-left">
           <h2 className="text-4xl font-semibold mb-4 metallic-text">Currently Working On</h2>
           <p className="text-lg text-gray-300">
-            I'm currently working on an <span className="font-bold text-blue-400">Autonomous Billing System</span> that
+            I&apos;m currently working on an <span className="font-bold text-blue-400">Autonomous Billing System</span> that
             eliminates the need for manual checkouts. My focus is on integrating
             smart sensors and AI-powered camera to detect purchased items
             in real-time. As customers walk out, the system automatically
             generates a bill, which is displayed on a digital screen and
-            processed via a mobile payment app. Right now, I am refining the
+            processed via a mobile payment app. Right now, I&apos;m refining the
             detection accuracy and optimizing the backend to ensure smooth,
             error-free transactions. The goal is to make shopping seamless,
             fast, and fully automated, enhancing the retail experience with

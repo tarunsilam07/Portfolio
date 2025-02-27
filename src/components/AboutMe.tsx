@@ -4,6 +4,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { loadFull } from "tsparticles";
+import Image from "next/image";
 import Particles from "react-tsparticles";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -101,7 +102,13 @@ const AboutMe = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * index } }}
               >
-                <img src={role.img} alt={role.name} className="w-28 h-40 mx-auto mb-4" />
+                <Image 
+                  src={role.img} 
+                  alt={role.name} 
+                  width={112} // Adjust width as needed
+                  height={160} // Adjust height as needed
+                  className="w-28 h-40 mx-auto mb-4"
+                />
                 <span className="block text-xl">{role.emoji} {role.name}</span>
               </motion.div>
             ))}

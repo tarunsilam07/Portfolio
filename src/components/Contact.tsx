@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import axios from "axios";
 import Footer from "./Footer";
 
@@ -27,7 +27,7 @@ const ContactPage: React.FC = () => {
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 3000);
       setFormData({ name: "", email: "", message: "" });
-    } catch (err) {
+    } catch {
       setError("Failed to send message. Please try again.");
     }
   };

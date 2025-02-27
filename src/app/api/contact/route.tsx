@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
         };
         const mailResponse = await transport.sendMail(mailOptions);
         return NextResponse.json({ message: "message sent", mailResponse }, { status: 200 });
-    } catch (error: any) {
+    } catch (error) {
         return NextResponse.json({ error: error }, { status: 500 });
     }
 }

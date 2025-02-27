@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import BackgroundParticles from "@/particles/BackgroundParticle";
 import Navbar from "./NavBar";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,7 +13,6 @@ export default function Header() {
   const textRef = useRef(null);
   const btnRef = useRef(null);
   const bgRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     gsap.fromTo(
@@ -67,7 +67,7 @@ export default function Header() {
           className="text-4xl md:text-5xl font-bold mb-4 metallic-text"
           animate={{ y: [0, -5, 0], transition: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
         >
-          Hello, I'm Tarun!
+          Hello, I&apos;m Tarun!
         </motion.h2>
         <p className="text-base md:text-lg text-gray-300 mb-16 metallic-text">
           FullStack Developer | ML Enthusiast | Tech Explorer
@@ -80,7 +80,14 @@ export default function Header() {
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 200 }}
         >
-          <img src="/profile.webp" alt="Tarun" className="w-full h-full object-cover" />
+                    <Image
+            src="/profile.webp"
+            alt="Tarun"
+            width={160}
+            height={160}
+            className="rounded-full object-cover"
+            priority
+          />
         </motion.div>
 
         {/* Buttons - Enhanced Animation */}
