@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: "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", 
+  apiKey: process.env.OPEN_API, 
   baseURL: "https://openrouter.ai/api/v1",
 });
 

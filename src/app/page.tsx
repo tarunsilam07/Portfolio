@@ -7,7 +7,6 @@ import ProjectsPage from '@/components/Projects';
 import Skills from '@/components/Skills';
 import ExperiencePage from '@/components/Experience';
 import ChatPage from '@/components/Chat';
-import Footer from '@/components/Footer';
 
 const MainPage: React.FC = () => {
   return (
