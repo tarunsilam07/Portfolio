@@ -35,9 +35,9 @@ const AboutMe = () => {
   }, []);
 
   const roles = [
-    { name: "Full-Stack Developer", emoji: "🚀", img: "fullstack.webp" },
-    { name: "Data Analysis Beginner", emoji: "🌍", img: "data_analysis.webp" },
-    { name: "ML Enthusiast", emoji: "💡", img: "ml.webp" },
+    { name: "Full-Stack Developer", emoji: "🚀", img: "/fullstack.webp" },
+    { name: "Data Analysis Beginner", emoji: "🌍", img: "/data_analysis.webp" },
+    { name: "ML Enthusiast", emoji: "💡", img: "/ml.webp" },
   ];
 
   return (

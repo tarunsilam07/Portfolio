@@ -39,9 +39,11 @@ export default function Header() {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -80,7 +82,7 @@ export default function Header() {
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 200 }}
         >
-                    <Image
+          <Image
             src="/profile.webp"
             alt="Tarun"
             width={160}
