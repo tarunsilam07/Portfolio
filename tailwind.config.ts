@@ -14,5 +14,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")], // ✅ Add scrollbar plugin
 } satisfies Config;
