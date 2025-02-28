@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPEN_API, // Use environment variable for security
+  apiKey: process.env.OPEN_API, 
   baseURL: "https://openrouter.ai/api/v1",
 });
 
@@ -10,7 +10,7 @@ const resumeData = `
   Name: Tarun Silam
   Title: Full-Stack Developer | IoT & AI Enthusiast
   Location: Samalkot, India
-  Contact: tarun79767@gmail.com, +91 6302559762
+  Contact: tarun79767@gmail.com,
   LinkedIn: https://www.linkedin.com/in/tarun-silam-83a46021a
   GitHub: https://github.com/tarunsilam07
   Portfolio: https://watashino-bloggy.vercel.app/
@@ -35,7 +35,7 @@ const resumeData = `
   - Frontend: React.js, HTML5, CSS, EJS, Tailwind CSS, Bootstrap
   - Backend: Node.js, Express.js, Next.js, REST APIs
   - Databases: MongoDB, MySQL, Cloud Firestore, Firebase
-  - Programming Languages: JavaScript, Python, C, C++
+  - Programming Languages: JavaScript, Python, C, C++,Typescript
   - Tools: Postman, Git, GitHub, Adobe Express
   - Concepts: Data Structures & Algorithms, Object-Oriented Programming, AI Elements, Cloud Computing
 
@@ -59,7 +59,7 @@ export async function POST(req:NextRequest) {
   try {
     const { prompt } = await req.json();
     const aiResponse = await openai.chat.completions.create({
-      model: "meta-llama/llama-3.3-70b-instruct:free", // Free model from OpenRouter
+      model: "meta-llama/llama-3.3-70b-instruct:free",
       messages: [
         { role: "system", content: `You are an AI assistant that only answers questions about Tarun Silam. Below is his resume:\n${resumeData}` },
         { role: "user", content: prompt }

@@ -109,7 +109,7 @@ const ProjectsPage: React.FC = () => {
             className="object-cover rounded-xl"
           />
         </div>
-        <div className="md:w-1/2 mt-6 md:mt-0 md:ml-8 text-justify md:text-left">
+        <div className="md:w-1/2 mt-6 md:mt-0 md:ml-8 text-center md:text-left">
           <h2 className="text-4xl font-semibold mb-4 metallic-text">Currently Working On</h2>
           <p className="text-lg text-gray-300">
             I&apos;m currently working on an <span className="font-bold text-blue-400">Autonomous Billing System</span> that

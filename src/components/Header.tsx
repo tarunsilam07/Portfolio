@@ -1,10 +1,9 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import BackgroundParticles from "@/particles/BackgroundParticle";
-import Navbar from "./NavBar";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,16 +12,9 @@ export default function Header() {
   const textRef = useRef(null);
   const btnRef = useRef(null);
   const bgRef = useRef(null);
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true); // Ensure it's running only on the client
-  }, []);
-
-  useLayoutEffect(() => {
-    if (!isClient) return;
-
-    const ctx = gsap.context(() => {
+    if (typeof window !== "undefined") {
       gsap.fromTo(
         textRef.current,
         { opacity: 0, y: 50 },
@@ -44,15 +36,15 @@ export default function Header() {
           scrub: 2,
         },
       });
-    });
-
-    return () => ctx.revert();
-  }, [isClient]);
+    }
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
-    if (isClient) {
+    if (typeof window !== "undefined") {
       const element = document.getElementById(sectionId);
-      element?.scrollIntoView({ behavior: "smooth" });
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -64,7 +56,6 @@ export default function Header() {
       className="h-screen flex flex-col items-center justify-center text-center text-white relative overflow-hidden"
     >
       {memoizedParticles}
-      <Navbar />
 
       {/* Hero Section */}
       <motion.div
@@ -108,9 +99,9 @@ export default function Header() {
         <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6">
           <motion.a
             ref={btnRef}
-            href="/Tarun_Silam_Resume.pdf"
-            download
-            className="inline-flex items-center px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300"
+            href="/"
+            download="Tarun_Silam_Resume.pdf"
+            className="inline-flex items-center px-4 py-2 md:px-6 md:py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
             whileHover={{ scale: 1.1, rotate: 3 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -119,7 +110,7 @@ export default function Header() {
 
           <motion.button
             onClick={() => scrollToSection("contact")}
-            className="inline-flex items-center px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300"
+            className="inline-flex items-center px-4 py-2 md:px-6 md:py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
             whileHover={{ scale: 1.1, rotate: -3 }}
             transition={{ type: "spring", stiffness: 300 }}
           >

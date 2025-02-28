@@ -1,138 +1,100 @@
 "use client";
-import { useEffect, useRef, useMemo, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState, useEffect } from "react";
+import { FaInstagram, FaGithub, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import BackgroundParticles from "@/particles/BackgroundParticle";
-import Navbar from "./NavBar";
-import Image from "next/image";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function Header() {
-  const textRef = useRef(null);
-  const btnRef = useRef(null);
-  const bgRef = useRef(null);
-  const [isClient, setIsClient] = useState(false);
+const Navbar: React.FC = () => {
+  const [activeSection, setActiveSection] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    const handleScroll = () => {
+      const sections = ["AiChat", "about", "skills", "experience", "projects", "contact"];
+      for (let section of sections) {
+        const element = document.getElementById(section);
+        if (element && element.getBoundingClientRect().top < window.innerHeight / 2) {
+          setActiveSection(section);
+        }
+      }
+    };
 
-    if (typeof window !== "undefined") {
-      const ctx = gsap.context(() => {
-        gsap.fromTo(
-          textRef.current,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }
-        );
-
-        gsap.fromTo(
-          btnRef.current,
-          { opacity: 0, scale: 0.5 },
-          { opacity: 1, scale: 1, duration: 1, delay: 1 }
-        );
-
-        gsap.to(bgRef.current, {
-          backgroundPosition: "50% 100%",
-          scrollTrigger: {
-            trigger: bgRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 2,
-          },
-        });
-      });
-
-      return () => ctx.revert();
-    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    if (isClient) {
-      const element = document.getElementById(sectionId);
-      element?.scrollIntoView({ behavior: "smooth" });
+  const handleClick = (section: string) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
     }
   };
 
-  const memoizedParticles = useMemo(() => <BackgroundParticles />, []);
-
   return (
-    <header
-      ref={bgRef}
-      className="h-screen flex flex-col items-center justify-center text-center text-white relative overflow-hidden"
-    >
-      {memoizedParticles}
-      <Navbar />
+    <nav className="fixed top-0 left-0 w-full bg-main bg-opacity-80 flex justify-between items-center px-6 md:px-12 py-4 z-50">
+      <div className="flex items-center w-full justify-between">
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white text-2xl">
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="flex flex-col items-center z-10 px-4 md:px-8"
-      >
-        <motion.h2
-          ref={textRef}
-          className="text-4xl md:text-5xl font-bold mb-4 metallic-text"
-          animate={{
-            y: [0, -5, 0],
-            transition: { repeat: Infinity, duration: 4, ease: "easeInOut" },
-          }}
-        >
-          Hello, I&apos;m Tarun!
-        </motion.h2>
-        <p className="text-base md:text-lg text-gray-300 mb-16 metallic-text">
-          FullStack Developer | ML Enthusiast | Tech Explorer
-        </p>
-
-        <motion.div
-          className="w-32 md:w-40 h-32 md:h-40 bg-gray-700 rounded-full overflow-hidden shadow-lg"
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 200 }}
-        >
-          <Image
-            src="/profile.webp"
-            alt="Tarun"
-            width={160}
-            height={160}
-            className="rounded-full object-cover"
-            priority
-          />
-        </motion.div>
-
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6">
+      <div className="hidden md:flex space-x-6 md:space-x-12 text-white">
+        {["AiChat", "about", "skills", "experience", "projects", "contact"].map((item) => (
           <motion.a
-            ref={btnRef}
-            href="/Tarun_Silam_Resume.pdf"
-            download
-            className="inline-flex items-center px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300"
-            whileHover={{ scale: 1.1, rotate: 3 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            key={item}
+            onClick={() => handleClick(item)}
+            className={`cursor-pointer text-sm md:text-lg hover:text-blue-400 transition duration-300 ${
+              activeSection === item ? "font-bold text-blue-400" : ""
+            }`}
+            whileHover={{ scale: 1.1 }}
           >
-            Download Resume
+            {item.charAt(0).toUpperCase() + item.slice(1)}
           </motion.a>
+        ))}
+      </div>
 
-          <motion.button
-            onClick={() => scrollToSection("contact")}
-            className="inline-flex items-center px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300"
-            whileHover={{ scale: 1.1, rotate: -3 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            Contact Me
-          </motion.button>
+      <div className="hidden md:flex space-x-6 px-2">
+        <Link href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <FaGithub size={25} className="text-white hover:text-gray-400 transition duration-300" />
+        </Link>
+        <Link href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <FaLinkedin size={25} className="text-blue-500 hover:text-blue-400 transition duration-300" />
+        </Link>
+        <Link href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <FaInstagram size={25} className="text-pink-500 hover:text-pink-400 transition duration-300" />
+        </Link>
+      </div>
+
+      {isOpen && (
+        <div className="absolute top-16 left-0 w-full bg-black bg-opacity-90 flex flex-col items-center py-6 space-y-6 text-white md:hidden">
+          {["AiChat", "about", "skills", "experience", "projects", "contact"].map((item) => (
+            <motion.a
+              key={item}
+              onClick={() => handleClick(item)}
+              className={`cursor-pointer text-lg hover:text-blue-400 transition duration-300 ${
+                activeSection === item ? "font-bold text-blue-400" : ""
+              }`}
+              whileHover={{ scale: 1.1 }}
+            >
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </motion.a>
+          ))}
+          <div className="flex space-x-6">
+            <Link href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <FaGithub size={25} className="text-white hover:text-gray-400 transition duration-300" />
+            </Link>
+            <Link href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <FaLinkedin size={25} className="text-blue-500 hover:text-blue-400 transition duration-300" />
+            </Link>
+            <Link href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <FaInstagram size={25} className="text-pink-500 hover:text-pink-400 transition duration-300" />
+            </Link>
+          </div>
         </div>
-      </motion.div>
-
-      <motion.div
-        className="absolute top-10 left-10 w-16 md:w-20 h-16 md:h-20 bg-blue-500 opacity-30 rounded-full z-0"
-        animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-10 right-10 w-14 md:w-16 h-14 md:h-16 bg-blue-500 opacity-30 rounded-full z-0"
-        animate={{ x: [0, -20, 0], y: [0, 20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-    </header>
+      )}
+    </nav>
   );
-}
+};
+
+export default Navbar;
