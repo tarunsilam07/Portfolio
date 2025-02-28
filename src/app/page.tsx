@@ -1,43 +1,52 @@
-"use client";
-import Contact from '@/components/Contact';
-import Header from '../components/Header';
-import AboutMe from '@/components/AboutMe';
-import Navbar from '@/components/NavBar';
-import ProjectsPage from '@/components/Projects';
-import Skills from '@/components/Skills';
-import ExperiencePage from '@/components/Experience';
-import ChatPage from '@/components/Chat';
+"use client"
+import React from "react";
+import AboutMe from "@/components/AboutMe";
+import ChatPage from "@/components/Chat";
+import ExperiencePage from "@/components/Experience";
+import Header from "@/components/Header";
+import Navbar from "@/components/NavBar";
+import ProjectsPage from "@/components/Projects";
+import Skills from "@/components/Skills";
+import  ContactPage from "@/components/Contact";
 
 const MainPage: React.FC = () => {
+  const refs = {
+    header: React.useRef<HTMLElement | null>(null),
+    AiChat: React.useRef<HTMLElement | null>(null),
+    about: React.useRef<HTMLElement | null>(null),
+    skills: React.useRef<HTMLElement | null>(null),
+    experience: React.useRef<HTMLElement | null>(null),
+    projects: React.useRef<HTMLElement | null>(null),
+    contact: React.useRef<HTMLElement | null>(null),
+  };
+
   return (
     <div className="main-container">
-      <Navbar/>
-      <section id="header">
-        <Header/>
+      <Navbar refs={refs} />
+
+      <section ref={refs.header}>
+        <Header />
       </section>
-      <section id="AiChat">
-        <ChatPage/>
+      <section ref={refs.AiChat}>
+        <ChatPage />
       </section>
-      <section id="about">
-        <AboutMe/>
+      <section ref={refs.about}>
+        <AboutMe />
       </section>
-      <section id="skills">
-        <Skills/>
+      <section ref={refs.skills}>
+        <Skills />
       </section>
-      <section id="experience">
-        <ExperiencePage/>
+      <section ref={refs.experience}>
+        <ExperiencePage />
       </section>
-      <section id="projects">
-        <ProjectsPage/>
+      <section ref={refs.projects}>
+        <ProjectsPage />
       </section>
-      <section id="contact">
-        <Contact/>
+      <section ref={refs.contact}>
+        <ContactPage />
       </section>
     </div>
   );
 };
 
 export default MainPage;
-
-
-  

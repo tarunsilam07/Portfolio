@@ -52,7 +52,7 @@ const resumeData = `
 
   Important Instruction:
   - Only answer questions strictly related to this resume.
-  - If asked something unrelated, respond with: "I can only answer questions about Tarun's background."
+  - If asked something unrelated, respond with: "Hii!! I can only answer questions about Tarun's Professional background !! Feel free to ask"
 `;
 
 export async function POST(req:NextRequest) {
