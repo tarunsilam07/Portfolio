@@ -1,8 +1,10 @@
 "use client";
 import Contact from '@/components/Contact';
-import Header from '../components/Header';
+import dynamic from "next/dynamic";
+const Header = dynamic(() => import("@/components/Header"), { ssr: false });
+const Navbar = dynamic(() => import("@/components/NavBar"), { ssr: false });
 import AboutMe from '@/components/AboutMe';
-import Navbar from '@/components/NavBar';
+// import Navbar from '@/components/NavBar';
 import ProjectsPage from '@/components/Projects';
 import Skills from '@/components/Skills';
 import ExperiencePage from '@/components/Experience';

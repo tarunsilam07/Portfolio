@@ -14,7 +14,7 @@ export default function Header() {
   const bgRef = useRef(null);
 
   useEffect(() => {
-    if (textRef.current && btnRef.current && bgRef.current) {
+    if (typeof window !== "undefined") {
       gsap.fromTo(
         textRef.current,
         { opacity: 0, y: 50 },
@@ -40,13 +40,20 @@ export default function Header() {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
-  const memoizedParticles = useMemo(() => <BackgroundParticles />, []);
+  const memoizedParticles = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return <BackgroundParticles />;
+    }
+    return null;
+  }, []);
 
   return (
     <header
@@ -55,6 +62,7 @@ export default function Header() {
     >
       {memoizedParticles}
 
+      {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -75,6 +83,7 @@ export default function Header() {
           FullStack Developer | ML Enthusiast | Tech Explorer
         </p>
 
+        {/* Animated 3D Profile Image */}
         <motion.div
           className="w-32 md:w-40 h-32 md:h-40 bg-gray-700 rounded-full overflow-hidden shadow-lg"
           whileHover={{ scale: 1.1, rotate: 5 }}
@@ -91,11 +100,12 @@ export default function Header() {
           />
         </motion.div>
 
+        {/* Buttons - Enhanced Animation */}
         <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6">
           <motion.a
             ref={btnRef}
-            href="/Tarun_Silam_Resume.pdf"
-            download
+            href="/"
+            download="Tarun_Silam_Resume.pdf"
             className="inline-flex items-center px-4 py-2 md:px-6 md:py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
             whileHover={{ scale: 1.1, rotate: 3 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -114,6 +124,7 @@ export default function Header() {
         </div>
       </motion.div>
 
+      {/* Floating Background Elements */}
       <motion.div
         className="absolute top-10 left-10 w-16 md:w-20 h-16 md:h-20 bg-blue-500 opacity-30 rounded-full z-0"
         animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
