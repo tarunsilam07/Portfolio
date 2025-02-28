@@ -1,45 +1,42 @@
 "use client";
-import Contact from '@/components/Contact';
+
 import dynamic from "next/dynamic";
 const Header = dynamic(() => import("@/components/Header"), { ssr: false });
 const Navbar = dynamic(() => import("@/components/NavBar"), { ssr: false });
-import AboutMe from '@/components/AboutMe';
-// import Navbar from '@/components/NavBar';
-import ProjectsPage from '@/components/Projects';
-import Skills from '@/components/Skills';
-import ExperiencePage from '@/components/Experience';
-import ChatPage from '@/components/Chat';
+const AboutMe = dynamic(() => import("@/components/AboutMe"), { ssr: false });
+const ProjectsPage = dynamic(() => import("@/components/Projects"), { ssr: false });
+const Skills = dynamic(() => import("@/components/Skills"), { ssr: false });
+const ExperiencePage = dynamic(() => import("@/components/Experience"), { ssr: false });
+const ChatPage = dynamic(() => import("@/components/Chat"), { ssr: false });
+const Contact = dynamic(() => import("@/components/Contact"), { ssr: false });
 
 const MainPage: React.FC = () => {
   return (
     <div className="main-container">
-      <Navbar/>
+      <Navbar />
       <section id="header">
-        <Header/>
+        <Header />
       </section>
       <section id="AiChat">
-        <ChatPage/>
+        <ChatPage />
       </section>
       <section id="about">
-        <AboutMe/>
+        <AboutMe />
       </section>
       <section id="skills">
-        <Skills/>
+        <Skills />
       </section>
       <section id="experience">
-        <ExperiencePage/>
+        <ExperiencePage />
       </section>
       <section id="projects">
-        <ProjectsPage/>
+        <ProjectsPage />
       </section>
       <section id="contact">
-        <Contact/>
+        <Contact />
       </section>
     </div>
   );
 };
 
 export default MainPage;
-
-
-  
