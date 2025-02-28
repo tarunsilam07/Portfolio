@@ -36,7 +36,8 @@ const resumeData = `
   - Backend: Node.js, Express.js, Next.js, REST APIs
   - Databases: MongoDB, MySQL, Cloud Firestore, Firebase
   - Programming Languages: JavaScript, Python, C, C++,Typescript
-  - Tools: Postman, Git, GitHub, Adobe Express
+  - Tools: Postman, Git, GitHub, Adobe Express 
+  - Data analysis : pandas, numpy, matplotlib, seaborn
   - Concepts: Data Structures & Algorithms, Object-Oriented Programming, AI Elements, Cloud Computing
 
   Certifications:
