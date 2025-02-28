@@ -9,6 +9,8 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // Prevents SSR error
+
     const handleScroll = () => {
       const sections = ["AiChat", "about", "skills", "experience", "projects", "contact"];
       for (const section of sections) {
@@ -24,6 +26,8 @@ const Navbar: React.FC = () => {
   }, []);
 
   const handleClick = (section: string) => {
+    if (typeof window === "undefined") return;
+
     const element = document.getElementById(section);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
