@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["AiChat", "about", "skills", "experience", "projects", "contact"];
-      for (let section of sections) {
+      for (const section of sections) {
         const element = document.getElementById(section);
         if (element && element.getBoundingClientRect().top < window.innerHeight / 2) {
           setActiveSection(section);
