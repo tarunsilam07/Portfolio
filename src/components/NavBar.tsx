@@ -10,24 +10,31 @@ const Navbar: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // Prevent SSR issues
+
     const handleScroll = () => {
+      let currentSection = "";
       for (const section in refs) {
         if (section === "header") continue;
         const element = refs[section]?.current;
-        if (element && element.getBoundingClientRect().top < window.innerHeight / 2) {
-          setActiveSection(section);
+        if (element && element.getBoundingClientRect().top <= window.innerHeight / 2) {
+          currentSection = section;
         }
       }
+      setActiveSection(currentSection);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [refs]);
 
   const handleClick = (section: string) => {
-    const element = refs[section]?.current;
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
+    if (typeof window !== "undefined") {
+      const element = refs[section]?.current;
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setIsOpen(false);
+      }
     }
   };
 
