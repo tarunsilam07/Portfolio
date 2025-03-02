@@ -10,7 +10,7 @@ const Navbar: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return; // Prevent SSR issues
+    // if (typeof window === "undefined") return; // Prevent SSR issues
 
     const handleScroll = () => {
       let currentSection = "";

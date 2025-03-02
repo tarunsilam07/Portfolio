@@ -11,10 +11,10 @@ const Footer: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null
   }, []);
 
   const scrollToSection = (section: string) => {
-    if (typeof window !== "undefined") {
+    // if (typeof window !== "undefined") {
       const element = refs[section]?.current;
       element?.scrollIntoView({ behavior: "smooth" });
-    }
+    // }
   };
 
   return (

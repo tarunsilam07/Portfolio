@@ -1,14 +1,15 @@
 "use client"
 import React from "react";
+import dynamic from "next/dynamic";
 import AboutMe from "@/components/AboutMe";
 import ChatPage from "@/components/Chat";
 import ExperiencePage from "@/components/Experience";
 import Header from "@/components/Header";
-import Navbar from "@/components/NavBar";
+const Navbar = dynamic(() => import("../components/NavBar"), { ssr: false });
+const Footer = dynamic(() => import("../components/Footer"), { ssr: false });
 import ProjectsPage from "@/components/Projects";
 import Skills from "@/components/Skills";
 import  ContactPage from "@/components/Contact";
-import Footer from "@/components/Footer";
 
 const MainPage: React.FC = () => {
   const refs = {
