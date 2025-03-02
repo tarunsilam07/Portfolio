@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import axios from "axios";
-import Footer from "./Footer";
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
