@@ -2,15 +2,16 @@
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 
-// Smooth scrolling function
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
-  }
-};
+const Footer: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null>> }> = ({ refs }) => {
+  const scrollToSection = (section: string) => {
+    if (typeof window !== "undefined") {
+      const element = refs[section]?.current;
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
-const Footer: React.FC = () => {
   return (
     <footer className="bg-main text-white py-10 px-6 md:px-12 relative">
       <div className="absolute inset-0 bg-white opacity-5 blur-3xl"></div>

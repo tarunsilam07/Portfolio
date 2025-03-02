@@ -77,7 +77,7 @@ const ContactPage: React.FC = () => {
           </button>
         </motion.form>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </motion.div>
   );
 };

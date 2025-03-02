@@ -8,6 +8,7 @@ import Navbar from "@/components/NavBar";
 import ProjectsPage from "@/components/Projects";
 import Skills from "@/components/Skills";
 import  ContactPage from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 const MainPage: React.FC = () => {
   const refs = {
@@ -23,7 +24,6 @@ const MainPage: React.FC = () => {
   return (
     <div className="main-container">
       <Navbar refs={refs} />
-
       <section ref={refs.header}>
         <Header />
       </section>
@@ -45,6 +45,8 @@ const MainPage: React.FC = () => {
       <section ref={refs.contact}>
         <ContactPage />
       </section>
+      <Footer refs={refs}/>
+      
     </div>
   );
 };
