@@ -1,14 +1,19 @@
 "use client";
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { useState, useEffect } from "react";
 
 const Footer: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null>> }> = ({ refs }) => {
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   const scrollToSection = (section: string) => {
     if (typeof window !== "undefined") {
       const element = refs[section]?.current;
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      element?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -57,7 +62,9 @@ const Footer: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null
 
       {/* Bottom Section - Copyright */}
       <div className="mt-8 text-center text-gray-500 text-xs border-t border-gray-800 pt-4 relative z-10">
-        © {new Date().getFullYear()} <span className="text-white font-semibold">Tarun Silam</span>. All Rights Reserved.
+        {year !== null && (
+          <>© {year} <span className="text-white font-semibold">Tarun Silam</span>. All Rights Reserved.</>
+        )}
       </div>
     </footer>
   );
