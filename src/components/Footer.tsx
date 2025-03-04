@@ -21,13 +21,13 @@ const Footer: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 relative z-10 text-center md:text-left">
         
-        {/* Left Section - Brand & Tagline */}
+        
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-blue-400 tracking-wide">Tarun Silam</h2>
           <p className="text-gray-400 text-sm mt-1">Building the future with code and innovation.</p>
         </div>
 
-        {/* Center Section - Navigation */}
+       
         <div className="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-6 text-xs md:text-sm uppercase tracking-wide font-medium">
           {["AiChat", "about", "skills", "experience", "projects", "contact"].map((item) => (
             <button
@@ -41,7 +41,7 @@ const Footer: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null
           ))}
         </div>
 
-        {/* Right Section - Social Links */}
+        
         <div className="flex justify-center md:justify-start space-x-5">
           <Link href="https://github.com/tarunsilam07" target="_blank" aria-label="GitHub">
             <FaGithub size={22} className="hover:text-gray-400 transition transform hover:scale-110 duration-300" />
@@ -58,7 +58,7 @@ const Footer: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null
         </div>
       </div>
 
-      {/* Bottom Section - Copyright */}
+      
       <div className="mt-6 text-center text-gray-500 text-xs border-t border-gray-800 pt-4 relative z-10">
         {year !== null && (
           <>© {year} <span className="text-white font-semibold">Tarun Silam</span>. All Rights Reserved.</>

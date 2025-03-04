@@ -48,9 +48,9 @@ export default function ChatPage() {
         Chat with AI
       </motion.h1>
 
-      {/* Chat Box Container */}
+      
       <div className="w-full max-w-xl flex flex-col border border-gray-700 rounded-3xl bg-gray-900 shadow-2xl overflow-hidden backdrop-blur-md bg-opacity-60 h-[500px]">
-        {/* Header */}
+       
         <div className="flex items-center gap-3 px-5 py-4 bg-gradient-to-r from-gray-800 to-gray-700 border-b border-gray-700">
           <Bot className="w-10 h-10 text-blue-400" />
           <div>
@@ -59,7 +59,7 @@ export default function ChatPage() {
           </div>
         </div>
 
-        {/* Messages */}
+       
         <div className="flex-1 overflow-y-auto space-y-4 p-3 custom-scrollbar h-[500px]">
           {messages.map((msg, index) => (
             <motion.div
@@ -87,7 +87,7 @@ export default function ChatPage() {
           )}
         </div>
 
-        {/* Input Box */}
+        
         <div className="flex items-center gap-3 p-3 border-t border-gray-700 bg-gray-900 rounded-b-3xl shadow-lg">
           <input
             className="flex-1 bg-gray-700 text-white border-none p-3 rounded-lg focus:ring-2 focus:ring-blue-500 placeholder-gray-400 transition-all duration-300 shadow-inner focus:outline-none"

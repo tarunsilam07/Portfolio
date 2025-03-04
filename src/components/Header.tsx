@@ -98,7 +98,7 @@ export default function Header() {
         </div>
       </motion.div>
 
-      {/* Floating Animated Circles */}
+      
       <motion.div
         className="absolute top-10 left-10 w-16 md:w-20 h-16 md:h-20 bg-blue-500 opacity-30 rounded-full z-0"
         animate={{ x: [0, 20, 0], y: [0, -20, 0] }}

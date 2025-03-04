@@ -42,7 +42,7 @@ const AboutMe = () => {
 
   return (
     <div className="relative bg-black text-white min-h-screen overflow-hidden pt-10">
-      {/* Particle Background */}
+    
       <Particles
         id="tsparticles"
         init={async (engine) => await loadFull(engine)}
@@ -67,7 +67,7 @@ const AboutMe = () => {
       />
 
       <div className="relative z-10 space-y-32">
-        {/* About Me Section */}
+       
         <section ref={(el) => { sectionsRef.current[0] = el as HTMLDivElement; }} className="flex flex-col items-center justify-center min-h-screen px-10">
           <motion.h2 className="text-5xl font-bold mb-10 metallic-text">About Me</motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-5xl">
@@ -91,7 +91,7 @@ const AboutMe = () => {
           </div>
         </section>
 
-        {/* Roles Section */}
+        
         <section ref={(el) => { sectionsRef.current[1] = el as HTMLDivElement; }} className="flex flex-col items-center justify-center min-h-screen px-10">
           <motion.h2 className="text-5xl font-bold mb-6 metallic-text">Roles</motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-5xl">
@@ -105,8 +105,8 @@ const AboutMe = () => {
                 <Image 
                   src={role.img} 
                   alt={role.name} 
-                  width={112} // Adjust width as needed
-                  height={160} // Adjust height as needed
+                  width={112} 
+                  height={160} 
                   className="w-28 h-40 mx-auto mb-4"
                 />
                 <span className="block text-xl">{role.emoji} {role.name}</span>
@@ -115,7 +115,7 @@ const AboutMe = () => {
           </div>
         </section>
 
-        {/* Education Section */}
+       
         <section ref={(el) => { sectionsRef.current[2] = el as HTMLDivElement; }} className="flex flex-col items-center justify-center min-h-screen px-10">
           <motion.h2 className="text-5xl font-bold mb-10 metallic-text">Education</motion.h2>
 

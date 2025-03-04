@@ -16,7 +16,7 @@ const ParticleEffect: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // ✅ Ensure this only runs in the browser
+   
     setIsClient(typeof window !== "undefined");
 
     if (!isClient) return;
@@ -43,7 +43,7 @@ const ParticleEffect: React.FC = () => {
     return () => window.removeEventListener("mousemove", createParticle);
   }, [isClient]);
 
-  if (!isClient) return null; // ✅ Prevents issues on the server
+  if (!isClient) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none">
