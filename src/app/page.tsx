@@ -1,15 +1,16 @@
 "use client"
 import React from "react";
 import dynamic from "next/dynamic";
-import AboutMe from "@/components/AboutMe";
-import ChatPage from "@/components/Chat";
-import ExperiencePage from "@/components/Experience";
-import Header from "@/components/Header";
+
+const AboutMe = dynamic(() => import("@/components/AboutMe"), { ssr: false });
+const ChatPage = dynamic(() => import("@/components/Chat"), { ssr: false });
+const ExperiencePage = dynamic(() => import("@/components/Experience"), { ssr: false });
+const Header = dynamic(() => import("@/components/Header"), { ssr: false });
 const Navbar = dynamic(() => import("../components/NavBar"), { ssr: false });
 const Footer = dynamic(() => import("../components/Footer"), { ssr: false });
-import ProjectsPage from "@/components/Projects";
-import Skills from "@/components/Skills";
-import  ContactPage from "@/components/Contact";
+const ProjectsPage = dynamic(() => import("@/components/Projects"), { ssr: false });
+const Skills = dynamic(() => import("@/components/Skills"), { ssr: false });
+const ContactPage = dynamic(() => import("@/components/Contact"), { ssr: false });
 
 const MainPage: React.FC = () => {
   const refs = {
@@ -46,8 +47,7 @@ const MainPage: React.FC = () => {
       <section ref={refs.contact}>
         <ContactPage />
       </section>
-      <Footer refs={refs}/>
-      
+      <Footer refs={refs} />
     </div>
   );
 };

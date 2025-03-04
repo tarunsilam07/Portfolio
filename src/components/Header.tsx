@@ -16,7 +16,7 @@ export default function Header() {
   const bgRef = useRef(null);
 
   useEffect(() => {
-    // if (typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       gsap.fromTo(
         textRef.current,
         { opacity: 0, y: 50 },
@@ -38,7 +38,7 @@ export default function Header() {
           scrub: 2,
         },
       });
-    // }
+    }
   }, []);
 
   const memoizedParticles = useMemo(() => <BackgroundParticles />, []);

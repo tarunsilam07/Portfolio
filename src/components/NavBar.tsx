@@ -29,10 +29,10 @@ const Navbar: React.FC<{ refs: Record<string, React.RefObject<HTMLElement | null
   }, [refs]);
 
   const handleClick = (section: string) => {
-    // if (typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       refs[section]?.current?.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
-    // }
+    }
   };
 
   const navLinks = Object.keys(refs)

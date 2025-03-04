@@ -17,7 +17,7 @@ const ParticleEffect: React.FC = () => {
 
   useEffect(() => {
     // ✅ Ensure this only runs in the browser
-    setIsClient(true);
+    setIsClient(typeof window !== "undefined");
 
     if (!isClient) return;
 
