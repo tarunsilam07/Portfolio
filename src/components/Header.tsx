@@ -75,7 +75,7 @@ export default function Header() {
           transition={{ type: "spring", stiffness: 200 }}
         >
           <DynamicImage
-            src="/profile.webp"
+            src="/profile11.jpg"
             alt="Tarun"
             width={160}
             height={160}

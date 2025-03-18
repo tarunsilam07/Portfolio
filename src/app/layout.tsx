@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Tarun Silam",
   description: "Portfolio of Tarun Silam",
-  icons:"/profile.webp"
+  icons:"/profile11.jpg"
 };
 
 export default function RootLayout({
